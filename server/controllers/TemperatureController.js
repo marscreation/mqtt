@@ -62,12 +62,12 @@ export const getTempByDeviceId = async (req, res) => {
         "topic"
       );
       const specificLocalDate = new Date(recordDate);
-      // const utcDate = utcToZonedTime(specificLocalDate, "Asia/Manila");
-      // console.log("utcDate", new Date(utcDate),specificLocalDate);
+      const utcDate = utcToZonedTime(specificLocalDate, "Asia/Manila");
+      console.log("utcDate", new Date(utcDate),specificLocalDate);
       // Convert local date to UTC
-      const specificUTCDate = new Date(
-        specificLocalDate.getTime() - specificLocalDate.getTimezoneOffset()
-      );
+      const specificUTCDate = (new Date(
+        utcDate.getTime() - utcDate.getTimezoneOffset()
+      )).addHours(-8);
       // find record by date filter by date
       const tempRecord = await TemperaturesModel.find({
         device: device._id.toString(),

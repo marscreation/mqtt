@@ -44,7 +44,7 @@ function connectoToBroker() {
   });
 
   client.on("message", async (topic, message) => {
-    console.log("received", topic, message.toString());
+    // console.log("received", topic, message.toString());
     activeTopics.every((element, index) => {
       if (element.topic === topic) {
         activeTopics[index].counter++;
@@ -64,27 +64,6 @@ function connectoToBroker() {
   // console.log(
   //   `Received message: ${topic.toString()}\nTopic: ${message.toString()}\n`
   // );
-}
-
-function addData(connect, topic) {
-  let temp = {};
-  connect.on("message", async (topic, message, packet) => {
-    console.log(topic, message.toString(), packet);
-    // if (temp.length >= 59) {
-    //   temp.push({ topic: topic, data: message });
-
-    //   const average = temp.reduce((prev, curr) => {
-    //     return parseFloat(curr.data.toString()) + parseFloat(prev);
-    //   }, 0);
-
-    //   addTemp(topic, (average / temp.length).toFixed(3));
-    //   temp = [];
-    // } else {
-    //   temp.push({ topic: topic, data: message });
-    //   console.log("addTem", temp.length, topic, message.toString());
-    // }
-  });
-  // console.log(`Subscribed to ${topic}`);
 }
 
 export const subscribeTo = (subsTopic) => {
