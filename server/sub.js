@@ -7,13 +7,13 @@ const client = mqtt.connect("mqtt://broker.hivemq.com");
 const CONNECTION = process.env.MONGODB_CONNECTION;
 let activeTopics = []; //topic,count
 
-// mongoose
-//   .connect(CONNECTION, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("Connected to Database " + CONNECTION))
-//   .catch((err) => console.error(err));
+mongoose
+  .connect(CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to Database"))
+  .catch((err) => console.error(err));
 
 // single topic
 // client.on("connect", function () {
