@@ -4,13 +4,15 @@ import { addDevice } from "./controllers/DeviceController.js";
 import mongoose from "mongoose";
 
 const client = mqtt.connect("mqtt://broker.hivemq.com");
+const CONNECTION = process.env.MONGODB_CONNECTION;
 let activeTopics = []; //topic,count
+
 mongoose
-  .connect("mongodb://localhost:27017/mqtt", {
+  .connect(CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to Database"))
+  .then(() => console.log("Connected to Database " + CONNECTION))
   .catch((err) => console.error(err));
 
 // single topic

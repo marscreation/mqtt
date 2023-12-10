@@ -4,8 +4,17 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { loginUser, registerUser } from "./controllers/AuthController.js";
-import { getTempByDeviceId, getTempByUser } from "./controllers/TemperatureController.js";
-import { addDevice, deleteDevice, getDevices, getUserDevices, runDevice } from "./controllers/DeviceController.js";
+import {
+  getTempByDeviceId,
+  getTempByUser,
+} from "./controllers/TemperatureController.js";
+import {
+  addDevice,
+  deleteDevice,
+  getDevices,
+  getUserDevices,
+  runDevice,
+} from "./controllers/DeviceController.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 8080;
