@@ -61,8 +61,7 @@ export const getTempByDeviceId = async (req, res) => {
       const device = await DeviceModel.findOne({ _id: deviceId }).select(
         "topic"
       );
-      let specificLocalDate = new Date(recordDate);
-      specificLocalDate = specificLocalDate.addHours(parseInt(timezone) / 60)
+      let specificLocalDate = new Date(recordDate).addHours(parseInt(timezone) / 60);
       // const utcDate = utcToZonedTime(specificLocalDate, "Asia/Manila");
       // Convert local date to UTC
       const specificUTCDate = new Date(

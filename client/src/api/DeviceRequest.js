@@ -3,7 +3,6 @@ const API_URL = import.meta.env.VITE_REACT_API_URL;
 export const getDeviceRecord = async (id, date) => {
   try {
     const timezone = new Date().getTimezoneOffset();
-    console.log("timezone",timezone)
     const response = await fetch(
       `${API_URL}/device?deviceId=${id}&date=${date}&timezone=${timezone}`
     );
