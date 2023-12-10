@@ -9,7 +9,7 @@ export const addDevice = async (req, res) => {
   try {
     const device = await newDevice.save();
     res.status(200).json({ data: device });
-    // subscribeTo(topic);
+    subscribeTo(topic);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
