@@ -8,7 +8,7 @@ import { getTempByDeviceId, getTempByUser } from "./controllers/TemperatureContr
 import { addDevice, deleteDevice, getDevices, getUserDevices, runDevice } from "./controllers/DeviceController.js";
 
 dotenv.config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 const CONNECTION = process.env.MONGODB_CONNECTION;
 const app = express();
 app.use(express.json());
