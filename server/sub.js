@@ -94,6 +94,10 @@ export const subscribeTo = (subsTopic) => {
   });
 };
 
+export const unsubcribeTo = (subsTopic) => {
+  client.unsubscribe(subsTopic)
+};
+
 connectoToBroker();
 // subscribeTo("temperature2");
 

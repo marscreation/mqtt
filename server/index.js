@@ -13,6 +13,8 @@ import {
   deleteDevice,
   getDevices,
   getUserDevices,
+  initAllDevice,
+  initDevices,
   runDevice,
 } from "./controllers/DeviceController.js";
 
@@ -29,7 +31,10 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to Database"))
+  .then(() => {
+    console.log("Connected to Database");
+    initAllDevice();
+  })
   .catch((err) => console.error(err));
 
 app.listen(8080, () => {
@@ -46,5 +51,6 @@ app.post("/devices", addDevice);
 app.get("/devices", getDevices);
 app.get("/devices/user/:userId", getUserDevices);
 app.get("/device", getTempByDeviceId);
+app.get("/devices/run", initDevices);
 app.get("/device/run/:deviceId", runDevice);
 app.delete("/devices/:deviceId", deleteDevice);
