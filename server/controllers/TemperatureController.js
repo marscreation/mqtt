@@ -1,11 +1,11 @@
 import TemperaturesModel from "../models/temperaturesModel.js";
 import DeviceModel from "../models/devices.js";
-import { zonedTimeToUtc,utcToZonedTime } from "date-fns-tz";
+import { zonedTimeToUtc, utcToZonedTime } from "date-fns-tz";
 
-Date.prototype.addHours= function(h){
-  this.setHours(this.getHours()+h);
+Date.prototype.addHours = function (h) {
+  this.setHours(this.getHours() + h);
   return this;
-}
+};
 
 export const addTemp = async (topic, message) => {
   try {
@@ -63,11 +63,16 @@ export const getTempByDeviceId = async (req, res) => {
       );
       const specificLocalDate = new Date(recordDate);
       const utcDate = utcToZonedTime(specificLocalDate, "Asia/Manila");
-      console.log("utcDate", new Date(utcDate),specificLocalDate);
       // Convert local date to UTC
-      const specificUTCDate = (new Date(
+      const specificUTCDate = new Date(
         utcDate.getTime() - utcDate.getTimezoneOffset()
-      )).addHours(-8);
+      );
+      console.log(
+        "utcDate",
+        new Date(utcDate),
+        specificLocalDate,
+        new Date(new Date(specificUTCDate).getTime() + 24 * 60 * 60 * 1000)
+      );
       // find record by date filter by date
       const tempRecord = await TemperaturesModel.find({
         device: device._id.toString(),
