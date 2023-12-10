@@ -53,23 +53,22 @@ export const getTempByUser = async (req, res) => {
 
 export const getTempByDeviceId = async (req, res) => {
   try {
-    const deviceId = req.query.deviceId;
-    const recordDate = req.query.date;
+    const { deviceId, date: recordDate, timezone } = req.query;
+    console.log(timezone);
     if (!deviceId) {
       res.status(401).send("device id is required");
     } else {
       const device = await DeviceModel.findOne({ _id: deviceId }).select(
         "topic"
       );
-      const specificLocalDate = new Date(recordDate);
-      const utcDate = utcToZonedTime(specificLocalDate, "Asia/Manila");
+      const specificLocalDate = new Date(recordDate).addHours(timezone / 60);
+      // const utcDate = utcToZonedTime(specificLocalDate, "Asia/Manila");
       // Convert local date to UTC
-      const specificUTCDate = (new Date(
-        utcDate.getTime() - utcDate.getTimezoneOffset()
-      )).addHours(-16);
+      const specificUTCDate = new Date(
+        specificLocalDate.getTime() - specificLocalDate.getTimezoneOffset()
+      );
       console.log(
         "utcDate",
-        new Date(utcDate),
         specificLocalDate,
         new Date(new Date(specificUTCDate).getTime() + 24 * 60 * 60 * 1000)
       );

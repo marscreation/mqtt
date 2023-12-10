@@ -2,12 +2,12 @@ const API_URL = import.meta.env.VITE_REACT_API_URL;
 
 export const getDeviceRecord = async (id, date) => {
   try {
+    const timezone = new Date().getTimezoneOffset();
     const response = await fetch(
-      `${API_URL}/device?deviceId=${id}&date=${date}`
+      `${API_URL}/device?deviceId=${id}&date=${date}&timezone=${timezone}`
     );
     if (response.ok) {
       const result = response.json();
-      // console.log(result);
       return result;
     }
   } catch (error) {
@@ -21,7 +21,6 @@ export const getDevices = async () => {
     const response = await fetch(`${API_URL}/devices`);
     if (response.ok) {
       const result = response.json();
-      // console.log("devices", result);
       return result;
     }
   } catch (error) {
@@ -41,8 +40,7 @@ export const addDevice = async ({ deviceName, deviceTopic }) => {
     });
     if (response.ok) {
       const result = response.json();
-      // console.log(result);
-      return {success: true};
+      return { success: true };
     }
   } catch (error) {
     console.log(error);
