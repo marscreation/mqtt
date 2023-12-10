@@ -127,10 +127,19 @@ function App() {
           <LineChart chartData={deviceData} options={lineOptions} />
         )}
       </div>
-      <div style={{display: "flex", justifyContent:"center", gap: 50, marginTop: 50}}>
-      <DeviceListTable deviceList={deviceList} updateDevices={getDeviceList} />
-      <RegisterDevice updateDevices={getDeviceList} />
-
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 50,
+          marginTop: 50,
+        }}
+      >
+        <RegisterDevice updateDevices={getDeviceList} />
+        <DeviceListTable
+          deviceList={deviceList}
+          updateDevices={getDeviceList}
+        />
       </div>
     </div>
   );

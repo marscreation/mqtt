@@ -27,7 +27,7 @@ export default function RegisterDevice({updateDevices}) {
 
   return (
     <div className={!modalVisible ? "hidden" : ""}>
-      <h1>Register Device</h1>
+      <h3>Register Device</h3>
       <form onSubmit={(e) => formSubmit(e)}>
         <label>Device Name:</label>
         <input type="text" name="deviceName" ref={deviceName} />
