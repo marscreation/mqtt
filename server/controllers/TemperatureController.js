@@ -64,9 +64,9 @@ export const getTempByDeviceId = async (req, res) => {
       const specificLocalDate = new Date(recordDate);
       const utcDate = utcToZonedTime(specificLocalDate, "Asia/Manila");
       // Convert local date to UTC
-      const specificUTCDate = new Date(
+      const specificUTCDate = (new Date(
         utcDate.getTime() - utcDate.getTimezoneOffset()
-      );
+      )).addHours(-16);
       console.log(
         "utcDate",
         new Date(utcDate),
