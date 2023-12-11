@@ -87,7 +87,7 @@ export const deleteDevice = async (req, res) => {
   const { deviceId } = req.params;
   try {
     const device = await DeviceModel.findByIdAndUpdate(deviceId, { active: 0 });
-    if (device?.topic && device.topic !== "") unsubcribeTo(topic);
+    if (device?.topic && device.topic !== "") unsubcribeTo(device?.topic);
     res.status(200).json({ success: true, message: "Successfully removed" });
   } catch (error) {
     res.status(500).json({ message: error.message });
