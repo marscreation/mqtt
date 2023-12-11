@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { addDevice } from "../api/DeviceRequest";
 
-export default function RegisterDevice({updateDevices}) {
+export default function RegisterDevice({ updateDevices }) {
   const [modalVisible, setModalVisible] = useState(true);
   const [formAction, setFormAction] = useState("add");
   const deviceName = useRef();
@@ -17,11 +17,11 @@ export default function RegisterDevice({updateDevices}) {
     const dname = deviceName.current.value;
     const dtopic = deviceTopic.current.value;
     const result = await addDevice({ deviceName: dname, deviceTopic: dtopic });
-    if(result.success) {
-        alert("Device added")
-        updateDevices();
+    if (result.success) {
+      alert("Device added");
+      updateDevices();
     } else {
-        alert("Device not added")
+      alert("Device not added");
     }
   };
 
@@ -35,10 +35,12 @@ export default function RegisterDevice({updateDevices}) {
         <label>MQTT Topic:</label>
         <input type="text" name="deviceSerialNumber" ref={deviceTopic} />
         <br />
-        <button type="submit">Save</button>
-        <button type="button" onClick={btnCancel}>
-          Cancel
+        <button style={{ cursor: "pointer" }} type="submit">
+          Save
         </button>
+        {/* <button type="button" onClick={btnCancel}>
+          Cancel
+        </button> */}
       </form>
     </div>
   );
